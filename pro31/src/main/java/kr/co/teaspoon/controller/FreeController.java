@@ -45,6 +45,7 @@ public class FreeController {
         List<Dat> datList = datService.datList(fno);
         model.addAttribute("datList", datList);
         model.addAttribute("dto", dto);
+        model.addAttribute("fno", fno);
         return "/free/freeDetail";
     }
 

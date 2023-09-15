@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -36,10 +39,20 @@ public class DatController {
     }
 
     @GetMapping("delete.do")
-    public String datDelete(HttpServletRequest request, Model model) throws Exception {
+    public ModelAndView datDelete(HttpServletRequest request, Model model) throws Exception {
         int dno = Integer.parseInt(request.getParameter("dno"));
+        int fno = Integer.parseInt(request.getParameter("fno"));
         datService.datDelete(dno);
-        return "redirect:list.do";
+        model.addAttribute("fno", fno);
+        ModelAndView mav = new ModelAndView();
+        mav.setView(new RedirectView(request.getContextPath() + "/free/detail.do"));
+        return mav;
+        //String referer = request.getHeader("Referer");      // 요청한 페이지를 기억해서 보냄
+        //System.out.println(referer);
+        //return "redirect:/" + referer;
+//        RedirectView redirectView = new RedirectView();
+//        redirectView.setUrl("http://www.naver.com");
+//        return redirectView;
     }
 
 }

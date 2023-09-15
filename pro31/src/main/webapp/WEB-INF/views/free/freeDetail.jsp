@@ -96,7 +96,7 @@
 							  <textarea name="" id="" cols="30" rows="5" readonly>${dat.content}</textarea>
 						  </td>
 <%--		  이곳을 보아라 !--%>
-						  <a href="${path1 }/dat/datDelete.do?dno=${dat.dno}&par=${dto.fno}" class="dat_btn">삭제</a>
+						 		 <a class="button is-primary" href="${path1 }/dat/delete.do?dno=${dat.dno}&fno=${fno}">삭제</a>
 					  </c:forEach>
 					  <c:if test="${empty datList }">
 						  <tr>
